@@ -88,6 +88,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     transform: translateY(-100%);
     transition: transform 0.2s;
     background: linear-gradient(113deg, rgba(255, 226, 96, 1) 0%, rgba(171, 214, 153, 1) 16%, rgba(117, 201, 176, 1) 100%);
@@ -96,12 +97,16 @@
 
 .menu__list {
     padding: 0;
+    margin: 0;
 }
 
 .menu__item {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+    &:last-child{
+        margin-bottom: 0;
+    }
 }
 
 .menu__link {
@@ -111,6 +116,31 @@
     font-weight: 900;
     line-height: 1.25;
     color: $accentColor;
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 30px;
+}
+
+.social__item {
+    margin-right: 20px;
+    
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.social__link {
+    display: flex;
+}
+
+.social__svg {
+    fill: #fff;
 }
 
 .showMenu {
