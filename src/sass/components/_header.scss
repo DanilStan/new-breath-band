@@ -90,7 +90,7 @@
     flex-direction: column;
     transform: translateY(-100%);
     transition: transform 0.2s;
-    background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(95, 97, 99, 1) 100%);
+    background: linear-gradient(to right bottom, #4e4e51, #47474a, #404043, #39393d, #323236, #2d2d30, #27272b, #222225, #1d1d1f, #181719, #121213, #0a0a0a);
     
 }
 
@@ -109,12 +109,78 @@
 }
 
 .menu__link {
+    position: relative;
+
     font-family: $secondaryFontFamily;
     font-size: 34px;
     font-style: normal;
     font-weight: 900;
     line-height: 1.25;
     color: $primaryTextColor;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: $accentColor;
+        top: 40%;
+        box-shadow: 0 0 20px $accentColor;
+        transform: scale(0.7);
+        animation: out 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
+        @include primaryAnimation(transform)
+    }
+
+    &:hover::before {
+        animation: in 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes in {
+    0% {
+        width: 0;
+        left: 0;
+        right: auto;
+    }
+
+    100% {
+        left: 0;
+        right: auto;
+        width: 100%;
+    }
+}
+
+@keyframes out {
+    0% {
+        width: 100%;
+        left: auto;
+        right: 0;
+    }
+
+    100% {
+        width: 0;
+        left: auto;
+        right: 0;
+    }
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@for $i from 1 through 5 {
+    nav a:nth-child(#{$i}) {
+        animation:show .2s #{$i*0.1+1}s ease 1 both;
+    }
 }
 
 .social {
@@ -136,10 +202,29 @@
 
 .social__link {
     display: flex;
+
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #323239;
+    border: 2px solid #323239;
+    transition: .5s;
+    &:hover {
+        color: $accentColor;
+        box-shadow: 0 0 20px $accentColor;
+        text-shadow: 0 0 5px $accentColor;
+        transform: scale(1.1);
+        border-color: $accentColor;
+
+    }
 }
 
 .social__svg {
-    fill: #fff;
+    fill: #44444D;
+    transition: .5s;
+
+    .social__link:hover & {
+        fill: $accentColor;
+    }
 }
 
 .showMenu {
